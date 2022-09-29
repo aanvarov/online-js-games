@@ -2,14 +2,14 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ibrokhi1/games.droplet.uz/
-    - /bin/cp -R static $DEPLOYPATH
-    - /bin/cp asset-manifest.json $DEPLOYPATH
-    - /bin/cp favicon.ico $DEPLOYPATH
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp logo.png $DEPLOYPATH
-    - /bin/cp logo2.png $DEPLOYPATH
-    - /bin/cp logo3.ico $DEPLOYPATH
-    - /bin/cp logo192.png $DEPLOYPATH
-    - /bin/cp logo512.png $DEPLOYPATH
-    - /bin/cp manifest.json $DEPLOYPATH
-    - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp -R build/static $DEPLOYPATH
+    - /bin/cp build/asset-manifest.json $DEPLOYPATH
+    - /bin/cp build/favicon.ico $DEPLOYPATH
+    - /bin/cp build/index.html $DEPLOYPATH
+    - /bin/cp build/logo.png $DEPLOYPATH
+    - /bin/cp build/logo2.png $DEPLOYPATH
+    - /bin/cp build/logo3.ico $DEPLOYPATH
+    - /bin/cp build/logo192.png $DEPLOYPATH
+    - /bin/cp build/logo512.png $DEPLOYPATH
+    - /bin/cp build/manifest.json $DEPLOYPATH
+    - /bin/cp build/robots.txt $DEPLOYPATH
