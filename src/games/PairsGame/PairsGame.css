@@ -1,15 +1,48 @@
 .PairsGamePage {
-  background-color: #81d2e3;
+  background-color: #c2bdbd;
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.win__game {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(160, 151, 151, 0.425);
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.425),
+    rgba(255, 255, 255, 0.425)
+  );
+  z-index: 99;
+}
+
+.win__modal {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+}
+
+.win__button {
+  background-color: white;
+  border-radius: 15px;
+  padding: 8px 15px;
+  width: 80px;
+  margin: 0 auto;
 }
 .company__link {
   text-decoration: none;
-  color: rgb(70, 179, 70);
+  color: rgb(255, 255, 255);
 }
 .game__title {
   font-size: 2rem;
@@ -31,17 +64,57 @@
   max-width: 980px;
 }
 .card {
-  width: 177.5px;
-  height: 250px;
-  border-radius: 12px;
-  margin: 20px;
-  background: black;
-  background-image: url("./cardBack.jpeg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 170px;
+  height: 270px;
+  perspective: 1500px;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 5px;
   overflow: hidden;
+  margin: 20px;
 }
+
+.flip__card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: rotateY(0deg);
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip__card__inner {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+}
+
+.flip__card__front,
+.flip__card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip__card__front {
+  background-color: transparent;
+  color: black;
+}
+
+.flip__card__front img {
+  width: 100%;
+  height: 100%;
+}
+
+.flip__card__back {
+  background-color: transparent;
+  transform: rotateY(180deg);
+}
+
 .card.level2 {
   width: 145px;
   height: 205px;
@@ -57,26 +130,22 @@
   height: 170px;
   border-radius: 6px;
 }
-.showing {
+/* .showing {
   outline: 2px solid #81d2e3;
   box-shadow: 0 0 10px 5px #445559;
-}
-.card.level3.showing {
+} */
+/* .card.level3.showing {
   outline: 2px solid #81d2e3;
   box-shadow: 0 0 10px 5px #445559;
 }
 .card.level4.showing {
   outline: 2px solid #81d2e3;
   box-shadow: 0 0 10px 5px #445559;
-}
+} */
 
 .card__img {
   pointer-events: none;
-  opacity: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.card__img.showing {
-  opacity: 1;
 }

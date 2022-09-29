@@ -9,7 +9,6 @@ function PairsGame() {
   const [cards, setCards] = useState<Card[]>([]);
   const [foundPairs, setFoundPairs] = useState<Card[]>([]);
   const [numOfCards, setNumOfCards] = useState<number>(0);
-
   useEffect(() => {
     if (level === 1) {
       setLevelCards(CARDS.slice(0, 4));
@@ -54,7 +53,11 @@ function PairsGame() {
     if (selectedFirstCard && selectedSecondCard) {
       if (selectedFirstCard.id === selectedSecondCard.id) {
         setIsMatchedCards(true);
-        setFoundPairs((prev) => [...prev, selectedFirstCard, selectedSecondCard]);
+        setFoundPairs((prev) => [
+          ...prev,
+          selectedFirstCard,
+          selectedSecondCard,
+        ]);
       }
     }
   };
@@ -82,6 +85,12 @@ function PairsGame() {
 
   return (
     <div className="PairsGamePage">
+      <div className="win__game">
+        <div className="win__modal">
+          <h4>You win</h4>
+          <div className="win__button">Next level</div>
+        </div>
+      </div>
       <h1 className="game__title">
         <a className="company__link" href="http://droplet.uz">
           Droplet
@@ -89,7 +98,8 @@ function PairsGame() {
         Pairs Game v2
       </h1>
       <p>
-        Click any card to begin <span style={{ fontWeight: 900 }}>Level: {level}</span>{" "}
+        Click any card to begin{" "}
+        <span style={{ fontWeight: 900 }}>Level: {level}</span>{" "}
       </p>
       {/* <div>Timer 00:00</div> */}
 

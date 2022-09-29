@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./PairsGame.css";
-
+import cardBack from "./card.png";
 type CardItemProps = {
   card: Card;
   cardEventHandler: (setShowing: any, card: Card) => void;
@@ -9,7 +9,13 @@ type CardItemProps = {
   level: number;
 };
 
-function CardItem({ card, cardEventHandler, selectedCardsNum, foundPairs, level }: CardItemProps) {
+function CardItem({
+  card,
+  cardEventHandler,
+  selectedCardsNum,
+  foundPairs,
+  level,
+}: CardItemProps) {
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [isMatched, setIsMatched] = useState<boolean>(false);
 
@@ -45,14 +51,23 @@ function CardItem({ card, cardEventHandler, selectedCardsNum, foundPairs, level 
   return (
     <div
       onClick={() => cardClickHandler()}
-      className={`card ${isShowing && "showing"} ${level > 1 && "level" + level}`}
+      className={`card ${isShowing && "showing"} ${
+        level > 1 && "level" + level
+      }`}
     >
-      <img
-        // className={isShowing ? "card__img showing" : "card__img"}
-        className={`card__img ${isShowing && "showing"} `}
-        src={card.image}
-        alt={card.id.toString()}
-      />
+      <div className={`${isShowing && "flip__card__inner"} `}>
+        <div className="flip__card__front">
+          <img src={cardBack} />
+        </div>
+        <div className="flip__card__back">
+          <img
+            // className={isShowing ? "card__img showing" : "card__img"}
+            className="card__img"
+            src={card.image}
+            alt={card.id.toString()}
+          />
+        </div>
+      </div>
     </div>
   );
 }
