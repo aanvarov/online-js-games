@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PairsGame.css";
 import { CARDS } from "./constants";
 import CardItem from "./CardItem";
+const mp3 = require("./soundClick.mp3");
 
 function PairsGame() {
   const [level, setLevel] = useState<number>(1);
@@ -9,6 +10,10 @@ function PairsGame() {
   const [cards, setCards] = useState<Card[]>([]);
   const [foundPairs, setFoundPairs] = useState<Card[]>([]);
   const [numOfCards, setNumOfCards] = useState<number>(0);
+  const [selectedCardsNum, setSelectedCardsNum] = useState<number>(0);
+  const [selectedFirstCard, setSelectedFirstCard] = useState<Card>();
+  const [selectedSecondCard, setSelectedSecondCard] = useState<Card>();
+  const [isMatchedCards, setIsMatchedCards] = useState<boolean>(false);
 
   useEffect(() => {
     if (level === 1) {
@@ -45,16 +50,15 @@ function PairsGame() {
     }
   }, [foundPairs, levelCards]);
 
-  const [selectedCardsNum, setSelectedCardsNum] = useState<number>(0);
-  const [selectedFirstCard, setSelectedFirstCard] = useState<Card>();
-  const [selectedSecondCard, setSelectedSecondCard] = useState<Card>();
-  const [isMatchedCards, setIsMatchedCards] = useState<boolean>(false);
-
   const getSelectedCardsMatched = () => {
     if (selectedFirstCard && selectedSecondCard) {
       if (selectedFirstCard.id === selectedSecondCard.id) {
         setIsMatchedCards(true);
-        setFoundPairs((prev) => [...prev, selectedFirstCard, selectedSecondCard]);
+        setFoundPairs((prev) => [
+          ...prev,
+          selectedFirstCard,
+          selectedSecondCard,
+        ]);
       }
     }
   };
@@ -74,6 +78,14 @@ function PairsGame() {
       setSelectedFirstCard(undefined);
       setSelectedSecondCard(undefined);
     }
+    var audio = new Audio(mp3);
+    audio.play();
+    audio.onloadeddata = function (e) {
+      console.log("onloadeddata", e);
+    };
+    audio.onplay = function (e) {
+      console.log("onplay", e);
+    };
   };
 
   useEffect(() => {
@@ -82,6 +94,12 @@ function PairsGame() {
 
   return (
     <div className="PairsGamePage">
+      <div className="win__game">
+        <div className="win__modal">
+          <h4>You win</h4>
+          <div className="win__button">Next level</div>
+        </div>
+      </div>
       <h1 className="game__title">
         <a className="company__link" href="http://droplet.uz">
           Droplet
@@ -89,9 +107,14 @@ function PairsGame() {
         Pairs Game v2
       </h1>
       <p>
-        Click any card to begin <span style={{ fontWeight: 900 }}>Level: {level}</span>{" "}
+        Click any card to begin{" "}
+        <span style={{ fontWeight: 900 }}>Level: {level}</span>{" "}
       </p>
-      {/* <div>Timer 00:00</div> */}
+
+      {/* <div>
+        Timer {seconds < 9 ? `0${seconds}` : seconds} :{" "}
+        {tens < 9 ? `0${tens}` : tens}
+      </div> */}
 
       <div className="game__board">
         {cards &&
