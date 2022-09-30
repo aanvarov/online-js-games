@@ -104,7 +104,7 @@ function PairsGame() {
         <a className="company__link" href="http://droplet.uz">
           Droplet
         </a>{" "}
-        Pairs Game v2
+        Pairs Game 
       </h1>
       <p>
         Click any card to begin{" "}
