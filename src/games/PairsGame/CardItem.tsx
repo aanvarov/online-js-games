@@ -55,7 +55,7 @@ function CardItem({
         level > 1 && "level" + level
       }`}
     >
-      <div className={`${isShowing && "flip__card__inner"} `}>
+      <div className={`flip__card ${isShowing && "flip__card__inner"} `}>
         <div className="flip__card__front">
           <img src={cardBack} />
         </div>
