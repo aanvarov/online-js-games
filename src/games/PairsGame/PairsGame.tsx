@@ -36,9 +36,11 @@ function PairsGame() {
 
   useEffect(() => {
     if (foundPairs.length > 0 && foundPairs.length === numOfCards) {
-      alert("You won level!");
-      setFoundPairs([]);
-      setLevel(level + 1);
+      setTimeout(() => {
+        alert("You won level!");
+        setFoundPairs([]);
+        setLevel(level + 1);
+      }, 300);
     }
   }, [foundPairs, numOfCards]);
 
@@ -59,6 +61,17 @@ function PairsGame() {
           selectedFirstCard,
           selectedSecondCard,
         ]);
+        setTimeout(() => {
+          setSelectedCardsNum(0);
+          setSelectedFirstCard(undefined);
+          setSelectedSecondCard(undefined);
+        }, 10);
+      } else {
+        setTimeout(() => {
+          setSelectedCardsNum(0);
+          setSelectedFirstCard(undefined);
+          setSelectedSecondCard(undefined);
+        }, 600);
       }
     }
   };
@@ -74,18 +87,16 @@ function PairsGame() {
         setSelectedSecondCard(card);
       }
     } else {
-      setSelectedCardsNum(0);
-      setSelectedFirstCard(undefined);
-      setSelectedSecondCard(undefined);
+      setTimeout(() => {
+        setSelectedCardsNum(0);
+        setSelectedFirstCard(undefined);
+        setSelectedSecondCard(undefined);
+      }, 10);
     }
-    var audio = new Audio(mp3);
-    audio.play();
-    audio.onloadeddata = function (e) {
-      console.log("onloadeddata", e);
-    };
-    audio.onplay = function (e) {
-      console.log("onplay", e);
-    };
+    if (!selectedFirstCard || !selectedSecondCard) {
+      var audio = new Audio(mp3);
+      audio.play();
+    }
   };
 
   useEffect(() => {
@@ -104,7 +115,7 @@ function PairsGame() {
         <a className="company__link" href="http://droplet.uz">
           Droplet
         </a>{" "}
-        Pairs Game 
+        Pairs Game
       </h1>
       <p>
         Click any card to begin{" "}
