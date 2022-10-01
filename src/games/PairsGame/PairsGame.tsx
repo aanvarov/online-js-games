@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./PairsGame.css";
 import { CARDS } from "./constants";
 import CardItem from "./CardItem";
+import CountDownTimer from "./CountDownTimer";
 const mp3 = require("./soundClick.mp3");
 
 function PairsGame() {
@@ -14,7 +15,7 @@ function PairsGame() {
   const [selectedFirstCard, setSelectedFirstCard] = useState<Card>();
   const [selectedSecondCard, setSelectedSecondCard] = useState<Card>();
   const [isMatchedCards, setIsMatchedCards] = useState<boolean>(false);
-
+  const hoursMinSecs = { minutes: 1, seconds: 10 };
   useEffect(() => {
     if (level === 1) {
       setLevelCards(CARDS.slice(0, 4));
@@ -77,6 +78,7 @@ function PairsGame() {
   };
 
   const cardEventHandler = (setShowing: any, card: Card) => {
+
     setIsMatchedCards(false);
     if (selectedCardsNum < 2) {
       setShowing(true);
@@ -91,7 +93,7 @@ function PairsGame() {
         setSelectedCardsNum(0);
         setSelectedFirstCard(undefined);
         setSelectedSecondCard(undefined);
-      }, 10);
+      }, 600);
     }
     if (!selectedFirstCard || !selectedSecondCard) {
       var audio = new Audio(mp3);
@@ -117,10 +119,8 @@ function PairsGame() {
         </a>{" "}
         Pairs Game
       </h1>
-      <p>
-        Click any card to begin{" "}
-        <span style={{ fontWeight: 900 }}>Level: {level}</span>{" "}
-      </p>
+      <p>Click any card to begin </p>
+      <CountDownTimer hoursMinSecs={hoursMinSecs} />
 
       {/* <div>
         Timer {seconds < 9 ? `0${seconds}` : seconds} :{" "}
