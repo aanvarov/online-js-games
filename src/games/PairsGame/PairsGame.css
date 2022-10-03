@@ -108,6 +108,7 @@
 .flip__card__front img {
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .flip__card__back {
@@ -128,7 +129,7 @@
 .card.level4 {
   margin: 10px;
   width: 120px;
-  height: 170px;
+  height: 150px;
   border-radius: 6px;
 }
 
@@ -137,4 +138,109 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.each__sound {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.sound__button1 {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+.sound__button2 {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+@media (max-width: 600px) {
+  .game__board {
+    align-content: flex-start;
+    margin-top: 15px;
+  }
+
+  .card {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+  }
+  .card.level2 {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+  }
+  .card.level3 {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+  }
+
+  .card.level4 {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+  }
+
+  .game__title {
+    font-size: 1.7rem;
+    margin-top: 25px;
+  }
+  p {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 509px) {
+  .card {
+    width: 130px;
+    height: 180px;
+    margin: 10px;
+  }
+  .card.level2 {
+    width: 130px;
+    height: 180px;
+    margin: 10px;
+  }
+  .card.level3 {
+    width: 130px;
+    height: 180px;
+    margin: 10px;
+  }
+  .card.level4 {
+    width: 130px;
+    height: 180px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100px;
+    height: 145px;
+    margin: 10px;
+  }
+
+  .card.level2 {
+    width: 100px;
+    height: 145px;
+    margin: 10px;
+  }
+  .card.level3 {
+    width: 100px;
+    height: 145px;
+    margin: 10px;
+  }
+  .card.level4 {
+    width: 100px;
+    height: 145px;
+    margin: 10px;
+  }
 }

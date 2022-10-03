@@ -9,15 +9,14 @@ type CardItemProps = {
   level: number;
 };
 
-function CardItem({
-  card,
-  cardEventHandler,
-  selectedCardsNum,
-  foundPairs,
-  level,
-}: CardItemProps) {
+function CardItem({ card, cardEventHandler, selectedCardsNum, foundPairs, level }: CardItemProps) {
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [isMatched, setIsMatched] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsShowing(false);
+    setIsMatched(false);
+  }, [level]);
 
   useEffect(() => {
     if (!isMatched) {
@@ -51,9 +50,7 @@ function CardItem({
   return (
     <div
       onClick={() => cardClickHandler()}
-      className={`card ${isShowing && "showing"} ${
-        level > 1 && "level" + level
-      }`}
+      className={`card ${isShowing && "showing"} ${level > 1 && "level" + level}`}
     >
       <div className={`flip__card ${isShowing && "flip__card__inner"} `}>
         <div className="flip__card__front">
