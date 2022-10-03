@@ -1,40 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type CountDownTimerProps = {
-  hoursMinSecs: any;
-};
-const CountDownTimer = ({ hoursMinSecs }: any) => {
-  const { hours = 0, minutes = 0, seconds = 60 } = hoursMinSecs;
-  const [[hrs, mins, secs], setTime] = React.useState([
-    hours,
-    minutes,
-    seconds,
-  ]);
-
-  const tick = () => {
-    if (hrs === 0 && mins === 0 && secs === 0) reset();
-    else if (mins === 0 && secs === 0) {
-      setTime([hrs - 1, 59, 59]);
-    } else if (secs === 0) {
-      setTime([hrs, mins - 1, 59]);
-    } else {
-      setTime([hrs, mins, secs - 1]);
-    }
+  hoursMinSecs: {
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
   };
+  isTimerOn: boolean;
+  setHoursMinSecs: React.Dispatch<React.SetStateAction<{ minutes: number; seconds: number }>>;
+};
+const CountDownTimer = ({ hoursMinSecs, isTimerOn, setHoursMinSecs }: CountDownTimerProps) => {
+  const [[hrs, mins, secs], setTime] = useState<any>([]);
 
-  const reset = () =>
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
+  useEffect(() => {
+    setTime([hoursMinSecs.hours, hoursMinSecs.minutes, hoursMinSecs.seconds]);
+  }, [hoursMinSecs]);
 
-  React.useEffect(() => {
-    const timerId = setInterval(() => tick(), 1000);
+  useEffect(() => {
+    let timerId: any;
+    const tick = () => {
+      // const reset = () => setTime([hours, minutes, seconds]);
+      // if (hrs === 0 && mins === 0 && secs === 0) reset();
+      // else
+      if (mins === 0 && secs === 0) {
+        setHoursMinSecs({ minutes: 0, seconds: 0 });
+      } else if (secs === 0) {
+        setTime([hrs, mins - 1, 59]);
+      } else {
+        setTime([hrs, mins, secs - 1]);
+      }
+    };
+    if (isTimerOn) {
+      timerId = setInterval(() => tick(), 1000);
+    }
     return () => clearInterval(timerId);
-  });
+  }, [isTimerOn, hrs, mins, secs]);
 
   return (
     <div>
-      <p>{`${mins.toString().padStart(2, "0")}:${secs
-        .toString()
-        .padStart(2, "0")}`}</p>
+      <p>{`Timer: ${mins?.toString().padStart(2, "0")}:${secs?.toString().padStart(2, "0")}`}</p>
     </div>
   );
 };

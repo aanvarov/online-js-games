@@ -9,7 +9,5 @@ deployment:
     - /bin/cp build/logo.png $DEPLOYPATH
     - /bin/cp build/logo2.png $DEPLOYPATH
     - /bin/cp build/logo3.ico $DEPLOYPATH
-    - /bin/cp build/logo192.png $DEPLOYPATH
-    - /bin/cp build/logo512.png $DEPLOYPATH
     - /bin/cp build/manifest.json $DEPLOYPATH
     - /bin/cp build/robots.txt $DEPLOYPATH
